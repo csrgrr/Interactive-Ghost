@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            background-color: #000000;
+        }
+        #fantasma {
+            position: fixed;
+        }
+        #contenedor {
+            color: white;
+        }
+    </style>
+</head>
+<body onmousemove="move(event)">
+    <canvas id="fantasma" width="400" height="450" style="border:1px solid #000000;"></canvas> <!--Tamaño y borde-->
+    <div id="container"></div>
+
+    <script>
+
+    function move(e) {
+     let x = e.clientX;
+     let y = e.clientY;     
+     let coor = "Coordenates: (" + x + "," + y + ")";
+     document.getElementById("container").innerHTML = coor;
+     x = x-200;
+     y = y-225;
+     x = x +"px";
+     y = y +"px";
+
+
+
+
+        var fantasmico = document.getElementById("fantasma");
+
+        fantasmico.style.left=x;
+        fantasmico.style.top=y;
+
+        var fantasma = fantasmico.getContext("2d");
+
+
+           
+
+        //REDONDEAR LINEA
+        fantasma.lineCap = "round";
+        //elipsis
+       fantasma.beginPath(); //-->
+       fantasma.arc(200,200,100,Math.PI,0); //crear semi-circulo
+       fantasma.lineWidth = 4; //tamaño linea
+       fantasma.strokeStyle = 'white'; // color linea
+       
+        fantasma.lineTo(300, 400);
+        fantasma.lineTo(250, 350);
+        fantasma.lineTo(200, 400);
+        fantasma.lineTo(150, 350);
+        fantasma.lineTo(100, 400);
+        fantasma.lineTo(100, 200);
+
+        fantasma.fillStyle = "white"; //asignar color
+        fantasma.fill();
+
+       fantasma.stroke(); //crear linea
+       fantasma.closePath(); //<--
+
+        //CIRCULO
+        fantasma.beginPath(); //iniciar
+        fantasma.arc(150, 200, 20, 0, 2 * Math.PI, false); //crear circulo
+        fantasma.fillStyle = 'black'; //asignar color
+        fantasma.fill(); //crear
+        fantasma.closePath(); //cerrar
+
+        fantasma.beginPath(); //iniciar
+        fantasma.arc(250, 200, 20, 0, 2 * Math.PI, false); //crear circulo
+        fantasma.fillStyle = 'black'; //asignar color
+        fantasma.fill(); //crear
+        fantasma.closePath(); //cerrar
+
+        //elipsis
+        fantasma.beginPath(); //-->
+        fantasma.arc(200,200,10,0,1*Math.PI); //crear semi-circulo
+        fantasma.lineWidth = 4; //tamaño linea
+        fantasma.strokeStyle = 'black'; // color linea
+        fantasma.stroke(); //crear linea
+        fantasma.closePath(); //<--
+
+    }  
+    </script>
+</body>
+</html>
